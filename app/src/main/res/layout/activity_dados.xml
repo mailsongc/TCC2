@@ -42,6 +42,21 @@
         android:layout_marginTop="30dp"
         android:text="Modelo: VW Gol 1.0"/>
 
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edSenha"
+            android:layout_width="match_parent"
+            android:hint="Senha"
+            android:textSize="25dp"
+            android:inputType="textPassword"
+            android:layout_height="wrap_content" />
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:layout_width="wrap_content"
