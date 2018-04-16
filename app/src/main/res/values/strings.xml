@@ -3,4 +3,6 @@
     <string name="title_activity_cad_cnh">CadCNHActivity</string>
     <string name="title_activity_acoes">AcoesActivity</string>
     <string name="historico_alerta">Histórico de Alertas</string>
+    <string name="enviar_cnh">Enviar CNH</string>
+    <string name="tirar_foto">Tirar Foto</string>
 </resources>

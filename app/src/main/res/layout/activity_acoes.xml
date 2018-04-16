@@ -25,6 +25,7 @@
 
 </RelativeLayout>
     <GridLayout
+        android:id="@+id/gridAcoes"
         android:columnCount="2"
         android:rowCount="3"
         android:alignmentMode="alignMargins"

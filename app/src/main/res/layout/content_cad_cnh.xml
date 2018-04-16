@@ -6,9 +6,29 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.mailson.tcc.CadCNHActivity"
+    tools:context="com.example.mailson.tcc.LerPlacaActivity"
     tools:showIn="@layout/activity_cad_cnh">
 
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:textStyle="bold"
+
+        android:id="@+id/txtTesteLeitura"/>
+
+    <SurfaceView
+        android:id="@+id/svCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtTest"/>
 
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="match_parent"

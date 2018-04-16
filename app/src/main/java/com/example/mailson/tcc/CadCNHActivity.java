@@ -1,62 +1,75 @@
 package com.example.mailson.tcc;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
-public class CadCNHActivity extends AppCompatActivity implements View.OnClickListener {
-    final int Camera_Request_Code = 1343;
+import com.example.mailson.tcc.Classes.Dados;
+
+public class CadCNHActivity extends AppCompatActivity {
+
+    private ImageView imageView;
+    private Bitmap imagemCNh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cad_cnh);
+        setContentView(R.layout.activity_cad_cnh2);
+
+        Button btnEnviar = (Button)findViewById(R.id.btnEnviarCNHFoto);
+        Button btnTirarFoto = (Button)findViewById(R.id.btnTirarFotoCNH);
+        imageView = (ImageView)findViewById(R.id.imgCNHFoto);
 
 
-        Button btnEnviar = findViewById(R.id.btnEnviarCNH);
+        btnTirarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent  = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,0);
 
-        btnEnviar.setOnClickListener(this);
+            }
+        });
 
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if(imagemCNh != null){
+
+                    new Thread(new Runnable()
+                    {
+                        public void run() {
+
+                            if (Dados.EnviarCNH((imagemCNh))) {
+                                Intent intent = new Intent(getApplicationContext(), DadosActivity.class);
+                               startActivity(intent);
+                            }
+                        }
+                    }).start();
+
+                    //Dados.EnviarCNH(imagemCNh);
+                 /* Dados enviou =  new Dados();
+                  enviou.execute(imagemCNh);
+                  if(enviou.getStatus().){
+
+                  }
+                    */
+                }
+            }
+        });
 
     }
 
     @Override
-    public void onClick(View view) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        int id = view.getId();
-
-        switch (id) {
-
-            case R.id.btnEnviarCNH:
-
-                try{
-                    Intent callCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                    startActivityForResult(callCameraIntent, Camera_Request_Code);
-                }
-                catch (Exception ex){
-                    Intent intent = new Intent(this, DadosActivity.class);
-                    startActivity(intent);
-                }
-
-
-
-                break;
-                 }
-            }
-
-            protected void  onActivityResult(int requestCode,int resultCode, Intent data){
-
-                if(requestCode == Camera_Request_Code){
-                    Intent intent = new Intent(this, DadosActivity.class);
-                    startActivity(intent);
-                }
-            }
-
+        imagemCNh = (Bitmap)data.getExtras().get("data");
+        imageView.setImageBitmap(imagemCNh);
     }
+}

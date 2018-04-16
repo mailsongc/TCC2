@@ -16,7 +16,7 @@
         android:layout_marginBottom="9dp"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:text="Menagem de boas vindas"/>
+        android:text="Mensagem de boas vindas"/>
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btnIniciar"
         android:layout_width="wrap_content"

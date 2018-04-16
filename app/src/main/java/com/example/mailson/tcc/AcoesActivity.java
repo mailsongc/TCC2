@@ -6,21 +6,30 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.GridLayout;
+import android.widget.Toast;
+
 
 public class AcoesActivity extends AppCompatActivity {
 
+    private android.widget.GridLayout gridAcao;
     private GestureDetectorCompat gestureObject;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acoes);
 
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
+        gridAcao = (android.widget.GridLayout) findViewById(R.id.gridAcoes);
 
+        //eventos
+        setSingleEvent(gridAcao);
 
     }
 
@@ -28,6 +37,23 @@ public class AcoesActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent event){
         this.gestureObject.onTouchEvent(event);
         return super.onTouchEvent(event);
+    }
+
+
+    public void setSingleEvent(GridLayout grid) {
+        for (int i=0;i<grid.getChildCount();i++){
+            CardView cardView = (CardView)grid.getChildAt(i);
+            final int finalI = i;
+            //clique de cada icone
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                  //  Toast.makeText(AcoesActivity.this, "Click " + finalI, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), LerPlacaActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     class  LearnGesture extends GestureDetector.SimpleOnGestureListener{

@@ -3,11 +3,10 @@
     package="com.example.mailson.tcc">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
 
     <application
         android:allowBackup="true"
@@ -24,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CadCNHActivity"
+            android:name=".LerPlacaActivity"
             android:label="@string/title_activity_cad_cnh"
             android:theme="@style/superMaterialTheme.NoActionBar" />
         <activity android:name=".DadosActivity" />
@@ -33,21 +32,26 @@
             android:label="@string/title_activity_acoes"
             android:theme="@style/superMaterialTheme.NoActionBar" />
         <activity android:name=".HistoricoActivity" />
-        <activity android:name=".LogarActivity"></activity>
-        <service
-            android:name=".Classes.Notificacao">
+        <activity android:name=".LogarActivity" />
+
+        <service android:name=".Classes.Notificacao">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
-        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
+
+        <activity android:name=".CadCNHActivity"></activity>
     </application>
 
 </manifest>
