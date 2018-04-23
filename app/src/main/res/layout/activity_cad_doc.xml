@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CadCNHActivity">
+    tools:context=".CadDocActivity">
 
     <android.support.v7.widget.AppCompatImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="9"
-        android:src="@mipmap/documento_carro"
-        android:id="@+id/imgCNHFoto"/>
+        android:src="@mipmap/doc_carro"
+        android:id="@+id/imgDocFoto"/>
 
     <TableLayout
         android:layout_width="wrap_content"
@@ -24,7 +24,7 @@
             android:gravity="center_horizontal">
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btnTirarFotoCNH"
+                android:id="@+id/btnTirarFotoDoc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tirar_foto"
@@ -34,10 +34,10 @@
                 style="@style/RaisedButton"/>
 
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btnEnviarCNHFoto"
+                android:id="@+id/btnEnviarDocFoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/enviar_cnh"
+                android:text="Enviar Documento"
                 android:layout_column="1"
 
                 android:padding="18dip" android:gravity="center"
@@ -47,9 +47,5 @@
 
 
     </TableLayout>
-
-
-
-
 
 </LinearLayout>

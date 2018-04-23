@@ -1,4 +1,4 @@
-package com.example.mailson.tcc.Classes;
+package com.example.mailson.tcc.classes;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -19,7 +19,7 @@ public class Notificacao extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Pegar a notificação.
-        Log.i("teste", remoteMessage.getNotification().getBody());
+        Log.i("teste notificacao", remoteMessage.getNotification().getBody());
         mostrarNotificacao(remoteMessage.getNotification().getBody());
     }
 
@@ -48,5 +48,10 @@ public class Notificacao extends FirebaseMessagingService {
 
 
 
+    }
+
+    public  static  boolean EnviarNotificacao(String placa, String notificacao){
+
+        return  true;
     }
 }

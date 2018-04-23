@@ -26,7 +26,8 @@
             android:layout_width="match_parent"
             android:hint="Placa do Carro"
             android:textSize="25dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/edtPlaca"/>
     </android.support.design.widget.TextInputLayout>
 
 <android.support.design.widget.TextInputLayout
@@ -41,7 +42,8 @@
         android:hint="Senha"
         android:textSize="25dp"
         android:inputType="textPassword"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:id="@+id/edtSenha"/>
 </android.support.design.widget.TextInputLayout>
 
 

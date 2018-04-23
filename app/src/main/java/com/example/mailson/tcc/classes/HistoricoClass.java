@@ -1,4 +1,4 @@
-package com.example.mailson.tcc.Classes;
+package com.example.mailson.tcc.classes;
 
 public class HistoricoClass {
 

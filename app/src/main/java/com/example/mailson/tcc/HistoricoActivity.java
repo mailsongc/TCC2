@@ -6,13 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Slide;
-import android.transition.TransitionManager;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-import com.example.mailson.tcc.Classes.HistoricoClass;
-import com.example.mailson.tcc.Classes.RecyclerAdapter;
+import com.example.mailson.tcc.classes.HistoricoClass;
+import com.example.mailson.tcc.classes.RecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

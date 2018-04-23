@@ -1,6 +1,9 @@
 package com.example.mailson.tcc;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mailson.tcc.classes.Dados;
+import com.example.mailson.tcc.classes.Notificacao;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Frame;
@@ -28,6 +33,10 @@ import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import dmax.dialog.SpotsDialog;
 
 public class LerPlacaActivity extends AppCompatActivity implements View.OnClickListener {
     final int Camera_Request_Code = 1343;
@@ -37,6 +46,7 @@ public class LerPlacaActivity extends AppCompatActivity implements View.OnClickL
     TextView txtTeste;
     CameraSource cameraSource;
     final int RequestCameraId = 1001;
+    String notificacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +60,7 @@ public class LerPlacaActivity extends AppCompatActivity implements View.OnClickL
         surfaceView = (SurfaceView) findViewById(R.id.svCamera);
         txtTeste = (TextView) findViewById(R.id.txtTesteLeitura);
 
+        notificacao = getIntent().getStringExtra("Notificacao");
         TextRecognizer textRecognizer = new TextRecognizer.Builder(getApplicationContext()).build();
 
         if (!textRecognizer.isOperational()) {
@@ -116,7 +127,29 @@ public class LerPlacaActivity extends AppCompatActivity implements View.OnClickL
                                      stringBuilder.append(item.getValue());
                                      stringBuilder.append("\n");
                                  }
+                                Pattern pattern = Pattern.compile("[a-zA-Z]{3}\\-\\d{4}");
                                 txtTeste.setText(stringBuilder.toString());
+                                Matcher m = pattern.matcher(stringBuilder.toString());
+
+                                 if(m.find()){
+                                     final  String placa = m.group();
+                                     ProgressDialog  dialog = new ProgressDialog(LerPlacaActivity.this);
+                                     dialog.setTitle("Enviando Notificação de "+notificacao+" Para Placa:" + m.group());
+                                     dialog.show();
+
+                                     //start thread de enviar
+
+                                     new Thread(new Runnable()
+                                     {
+                                         public void run() {
+                                             if (Notificacao.EnviarNotificacao(placa, "")) {
+                                                 Intent intent = new Intent(getApplicationContext(), AcoesActivity.class);
+                                                 startActivity(intent);
+                                             }
+                                         }
+                                     }).start();
+
+                                 }
                             }
                         });
                     }

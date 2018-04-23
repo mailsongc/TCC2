@@ -30,12 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtTest"/>
 
-    <android.support.v7.widget.AppCompatImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:color/darker_gray"
-        android:src="@drawable/ic_camera"
-        android:id="@+id/imgCNH"/>
+
 
     <android.support.v7.widget.AppCompatButton
         android:layout_width="wrap_content"

@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         btnIniciar.setOnClickListener{
             var intent = Intent(this, LogarActivity::class.java)
+            //var intent = Intent(this, LerPlacaActivity::class.java)
             startActivity(intent)
         }
 

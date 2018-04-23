@@ -34,7 +34,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\mailson\Documents\placa.jpg" />
+                                      <entry key="imageAsset" value="C:\Users\mailson\Documents\icone_alert.png" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -50,7 +50,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="67" />
+                                                <entry key="scalingPercent" value="49" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -61,9 +61,11 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="a7b5bb" />
                                       <entry key="backgroundLayerName" value="ic_launcher_background" />
-                                      <entry key="foregroundImage" value="C:\Users\mailson\Downloads\AndroidGridLayout-master\app\src\main\res\drawable-xxxhdpi\bg.png" />
-                                      <entry key="outputName" value="ic_fundo_acoes" />
+                                      <entry key="foregroundImage" value="C:\Users\mailson\Documents\icone_alert.png" />
+                                      <entry key="foregroundLayerName" value="ic_fundo_acoes_foreground" />
+                                      <entry key="outputName" value="icone_alert" />
                                       <entry key="previewDensity" value="MEDIUM" />
                                     </map>
                                   </option>
@@ -77,8 +79,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="C:\Users\mailson\Documents\placa.jpg" />
-                                      <entry key="outputName" value="placa" />
+                                      <entry key="imageAsset" value="C:\Users\mailson\Documents\doc_xenon.jpg" />
+                                      <entry key="outputName" value="doc_carro" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -111,11 +113,6 @@
                                 </PersistentState>
                               </value>
                             </entry>
-                          </map>
-                        </option>
-                        <option name="values">
-                          <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>
