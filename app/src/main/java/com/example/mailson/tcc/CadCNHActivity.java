@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +17,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mailson.tcc.DTO.jsonVisionPost;
 import com.example.mailson.tcc.classes.Dados;
 
 import java.io.File;
+import java.io.Serializable;
 import java.net.URI;
 
 import dmax.dialog.SpotsDialog;
@@ -68,8 +71,13 @@ public class CadCNHActivity extends AppCompatActivity {
                     new Thread(new Runnable()
                     {
                         public void run() {
-                            if (Dados.EnviarCNH((imagemCNh))) {
+                            jsonVisionPost obj = new jsonVisionPost();
+                            obj = Dados.EnviarCNH(imagemCNh);
+
+                            if (obj.isSucesso()) {
                                 Intent intent = new Intent(getApplicationContext(), CadDocActivity.class);
+
+                                intent.putExtra("Objeto", obj);
                                startActivity(intent);
                             }
                         }

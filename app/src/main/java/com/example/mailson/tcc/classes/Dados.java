@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.util.Base64;
 import android.util.Log;
 
+import com.example.mailson.tcc.DTO.jsonVisionPost;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -12,6 +14,8 @@ import java.io.PrintStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 import okhttp3.MediaType;
@@ -24,12 +28,15 @@ public class Dados  {
 
 private static String urlApiVison = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDnf8Abt-kO8-beUGhkwLKiMrLc6TuGEXg";
 
-private static   boolean EnviarImagemApi(Bitmap imagem){
+private static jsonVisionPost EnviarImagemApi(Bitmap imagem){
+
+    jsonVisionPost obj = new jsonVisionPost();
     try {
         String json = "{\"requests\": [{\"image\":{\"content\":\""+ ConvertBitmapToString(imagem)+"\"},\"features\":[{\"type\":\"TEXT_DETECTION\"}]}]}";
 
 
-        /*final RequestBody body = RequestBody
+
+        final RequestBody body = RequestBody
                 .create(MediaType.parse("application/json"), json);
         final Request request = new Request.Builder()
                 .url(urlApiVison)
@@ -40,43 +47,30 @@ private static   boolean EnviarImagemApi(Bitmap imagem){
         Response response = client.newCall(request).execute();
         String resStr = response.body().string().toString();
 
+        Pattern pattern = Pattern.compile("[0-9]{3}.?[0-9]{3}.?[0-9]{3}-?[0-9]{2}");
+
+        Matcher m = pattern.matcher(resStr);
+
+        if(m.find()) {
+           obj.setCpf(m.group());
+        }
+
+        obj.setSucesso(true);
         JSONObject jsonReturn = new JSONObject(resStr);
-*/
-        URL url = new URL(urlApiVison);
-        HttpURLConnection connection =
-                (HttpURLConnection) url.openConnection();
-
-        connection.setRequestMethod("POST");
-
-        connection.setRequestProperty("Content-type", "application/json");
-        connection.setRequestProperty("Accept", "application/json");
-
-        connection.setDoOutput(true);
 
 
-        PrintStream printStream =
-                new PrintStream(connection.getOutputStream());
-        printStream.println(json);
-
-        connection.connect();
-
-        String jsonDeResposta =
-                new Scanner(connection.getInputStream()).next();
-
-
-        return  true;
+        return  obj;
     } catch (Exception e) {
         Log.e("Your tag", "Error", e);
-        return  true;
+        return  obj;
     }
 }
 
 
-    public  static  boolean EnviarCNH(Bitmap imagem){
+    public  static  jsonVisionPost EnviarCNH(Bitmap imagem){
 
-            boolean teste = EnviarImagemApi(imagem);
+            return  EnviarImagemApi(imagem);
 
-            return  true;
         //return false;
         /*
         try {
@@ -116,11 +110,10 @@ private static   boolean EnviarImagemApi(Bitmap imagem){
     }
 
 
-    public  static  boolean EnviarDocumento(Bitmap imagem){
+    public  static  jsonVisionPost EnviarDocumento(Bitmap imagem){
 
-        boolean teste = EnviarImagemApi(imagem);
+        return EnviarImagemApi(imagem);
 
-        return  true;
     }
 
 

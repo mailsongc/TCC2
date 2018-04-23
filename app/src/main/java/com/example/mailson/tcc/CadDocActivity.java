@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mailson.tcc.DTO.jsonVisionPost;
 import com.example.mailson.tcc.classes.Dados;
 
 import dmax.dialog.SpotsDialog;
@@ -32,6 +33,10 @@ public class CadDocActivity extends AppCompatActivity {
         Button btnTirarFoto = (Button)findViewById(R.id.btnTirarFotoDoc);
         imageView = (ImageView)findViewById(R.id.imgDocFoto);
 
+        jsonVisionPost obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
+        if(obj.isSucesso()){
+            Toast.makeText(this, obj.getCpf(), Toast.LENGTH_SHORT).show();
+        }
 
         btnTirarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +57,8 @@ public class CadDocActivity extends AppCompatActivity {
                     new Thread(new Runnable()
                     {
                         public void run() {
-                            if (Dados.EnviarCNH((imagemDoc))) {
+                            jsonVisionPost obj = Dados.EnviarCNH(imagemDoc);
+                            if (obj.isSucesso()) {
                                 Intent intent = new Intent(getApplicationContext(), DadosActivity.class);
 
                                 startActivity(intent);

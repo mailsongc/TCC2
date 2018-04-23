@@ -19,8 +19,14 @@ public class Notificacao extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Pegar a notificação.
-        Log.i("teste notificacao", remoteMessage.getNotification().getBody());
-        mostrarNotificacao(remoteMessage.getNotification().getBody());
+        try {
+            Log.i("teste notificacao", remoteMessage.getNotification().getBody());
+            mostrarNotificacao(remoteMessage.getNotification().getBody());
+        }
+        catch (Exception ex){
+
+        }
+
     }
 
     @Override
