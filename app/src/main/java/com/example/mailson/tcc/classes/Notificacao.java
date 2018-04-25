@@ -20,8 +20,9 @@ public class Notificacao extends FirebaseMessagingService {
     public void onMessageReceived(RemoteMessage remoteMessage) {
         //Pegar a notificação.
         try {
-            Log.i("teste notificacao", remoteMessage.getNotification().getBody());
-            mostrarNotificacao(remoteMessage.getNotification().getBody());
+           // Log.i("teste notificacao", remoteMessage.getNotification().getBody());
+            mostrarNotificacao(remoteMessage.getNotification().getBody()
+            ,remoteMessage.getNotification().getTitle());
         }
         catch (Exception ex){
 
@@ -40,10 +41,10 @@ public class Notificacao extends FirebaseMessagingService {
         super.onMessageSent(s);
     }
 
-    public void mostrarNotificacao(String message){
+    public void mostrarNotificacao(String message, String title){
         PendingIntent pi = PendingIntent.getActivity(this,0,new Intent(this, MainActivity.class),0);
         Notification notification = new NotificationCompat.Builder(this).setSmallIcon(R.drawable.ic_stat_ic_notification)
-                .setContentTitle("TESTE")
+                .setContentTitle(title)
                 .setContentText(message)
                 .setContentIntent(pi)
                 .setAutoCancel(true)

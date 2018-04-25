@@ -34,9 +34,6 @@ public class CadDocActivity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.imgDocFoto);
 
         jsonVisionPost obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
-        if(obj.isSucesso()){
-            Toast.makeText(this, obj.getCpf(), Toast.LENGTH_SHORT).show();
-        }
 
         btnTirarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +57,12 @@ public class CadDocActivity extends AppCompatActivity {
                             jsonVisionPost obj = Dados.EnviarCNH(imagemDoc);
                             if (obj.isSucesso()) {
                                 Intent intent = new Intent(getApplicationContext(), DadosActivity.class);
-
+                                intent.putExtra("Objeto", obj);
                                 startActivity(intent);
+                            }
+                            else{//não fez cadastro
+
+
                             }
                         }
                     }).start();

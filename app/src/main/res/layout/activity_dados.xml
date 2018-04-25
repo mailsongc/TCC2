@@ -14,6 +14,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:textSize="20dp"
+        android:id="@+id/txtNome"
         android:text="Nome: Mailson Gonçalves Correa"/>
 
 
@@ -24,6 +25,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:textSize="20dp"
+        android:id="@+id/txtPlaca"
         android:text="Placa: AED-8758"/>
 
     <android.support.v7.widget.AppCompatTextView
@@ -32,6 +34,7 @@
         android:layout_marginLeft="30dp"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
+        android:id="@+id/txtRenavam"
         android:text="Renavam:01598267429"/>
 
     <android.support.v7.widget.AppCompatTextView
@@ -40,6 +43,7 @@
         android:layout_marginLeft="30dp"
         android:textSize="20dp"
         android:layout_marginTop="30dp"
+        android:id="@+id/txtModelo"
         android:text="Modelo: VW Gol 1.0"/>
 
     <android.support.design.widget.TextInputLayout
@@ -50,10 +54,11 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/edSenha"
+            android:id="@+id/edtSenha"
             android:layout_width="match_parent"
             android:hint="Senha"
             android:textSize="25dp"
+
             android:inputType="textPassword"
             android:layout_height="wrap_content" />
     </android.support.design.widget.TextInputLayout>
