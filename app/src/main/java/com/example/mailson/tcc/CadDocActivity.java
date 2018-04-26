@@ -3,6 +3,8 @@ package com.example.mailson.tcc;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 
 import com.example.mailson.tcc.DTO.jsonVisionPost;
 import com.example.mailson.tcc.classes.Dados;
+
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import dmax.dialog.SpotsDialog;
 
@@ -34,6 +39,7 @@ public class CadDocActivity extends AppCompatActivity {
         imageView = (ImageView)findViewById(R.id.imgDocFoto);
 
         jsonVisionPost obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
+
 
         btnTirarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +86,17 @@ public class CadDocActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        imagemDoc = (Bitmap)data.getExtras().get("data");
-        imageView.setImageBitmap(imagemDoc);
+        Uri selectedImageUri = data.getData();
+        InputStream inputStream = null;
+        try {
+            inputStream = getContentResolver().openInputStream(selectedImageUri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            imagemDoc = bitmap;
+            imageView.setImageBitmap(bitmap);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }

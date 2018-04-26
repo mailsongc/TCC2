@@ -72,7 +72,10 @@ private static String EnviarImagemApi(Bitmap imagem){
         }
         int Inicio = jsonRetorno.indexOf("NOME");
         int Fim = jsonRetorno.lastIndexOf("DOC.");
-        obj.setNome(jsonRetorno.substring(Inicio,Fim));
+        if(Inicio >0 && Fim >0){
+            obj.setNome(jsonRetorno.substring(Inicio,Fim));
+        }
+
 
         obj.setSucesso(true);
 

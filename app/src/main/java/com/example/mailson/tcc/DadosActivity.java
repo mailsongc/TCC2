@@ -34,6 +34,12 @@ public class DadosActivity extends AppCompatActivity implements View.OnClickList
         
         Button btnConfirma = findViewById(R.id.btnConfirmar);
         jsonVisionPost obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
+
+        txtPlaca.setText("Placa: "+obj.getPlaca());
+        txtModelo.setText("Modelo: " +obj.getModela());
+        txtNome.setText("Nome: " +obj.getNome());
+        txtRenavam.setText("Renavam: "+obj.getRenavam());
+
         btnConfirma.setOnClickListener(this);
     }
 
@@ -51,9 +57,6 @@ public class DadosActivity extends AppCompatActivity implements View.OnClickList
                 //salvar cadastro e manter logado
                 Intent intent = new Intent(this, AcoesActivity.class);
                 startActivity(intent);
-
-
-
                 break;
         }
     }

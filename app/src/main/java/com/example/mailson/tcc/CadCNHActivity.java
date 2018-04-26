@@ -21,6 +21,8 @@ import com.example.mailson.tcc.DTO.jsonVisionPost;
 import com.example.mailson.tcc.classes.Dados;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URI;
 
@@ -31,7 +33,7 @@ public class CadCNHActivity extends AppCompatActivity {
     private ImageView imageView;
     private Bitmap imagemCNh;
     private Uri imageUri;
-    private int PICTURE_RESULT = 9;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +98,24 @@ public class CadCNHActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Uri selectedImageUri = data.getData();
+        InputStream inputStream = null;
 
-        imagemCNh = (Bitmap)data.getExtras().get("data");
-        imageView.setImageBitmap(imagemCNh);
+       // Bundle extra = new Bundle();
+       // extra.putString("imageFile", selectedImageUri.toString());
+        //Bitmap srcBmp = BitmapFactory.decodeStream(getApplicationContext().getContentResolver().openInputStream(uri), null, null);
+
+        //imagemCNh = (Bitmap)data.getExtras().get("data");
+
+        try {
+            inputStream = getContentResolver().openInputStream(selectedImageUri);
+            Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+            imagemCNh = bitmap;
+            imageView.setImageBitmap(bitmap);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 }
