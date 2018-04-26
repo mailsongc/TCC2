@@ -15,6 +15,8 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.mailson.tcc.DTO.jsonVisionPost;
+
 
 public class AcoesActivity extends AppCompatActivity {
 
@@ -29,7 +31,9 @@ public class AcoesActivity extends AppCompatActivity {
         gestureObject = new GestureDetectorCompat(this, new LearnGesture());
         gridAcao = (android.widget.GridLayout) findViewById(R.id.gridAcoes);
 
-
+        if(getIntent().getBooleanExtra("NotivicaoEnviada",false) == true){
+            Toast.makeText(this, "Notificação Enviada", Toast.LENGTH_SHORT).show();
+        }
         //eventos
         setSingleEvent(gridAcao);
 
@@ -56,7 +60,7 @@ public class AcoesActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             //  Toast.makeText(AcoesActivity.this, "Click " + finalI, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), LerPlacaActivity.class);
-                            intent.putExtra("Notificacao","Luz Acessa");
+                            intent.putExtra("Notificacao","luz");
                             startActivity(intent);
                         }
                     });
@@ -68,7 +72,7 @@ public class AcoesActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             //  Toast.makeText(AcoesActivity.this, "Click " + finalI, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), LerPlacaActivity.class);
-                            intent.putExtra("Notificacao","Porta Aberta");
+                            intent.putExtra("Notificacao","porta");
                             startActivity(intent);
                         }
                     });
@@ -80,7 +84,7 @@ public class AcoesActivity extends AppCompatActivity {
                         public void onClick(View view) {
                             //  Toast.makeText(AcoesActivity.this, "Click " + finalI, Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), LerPlacaActivity.class);
-                            intent.putExtra("Notificacao","Alarme Disparado");
+                            intent.putExtra("Notificacao","alarme");
                             startActivity(intent);
                         }
                     });

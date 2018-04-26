@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.mailson.tcc.classes.ConnectionWS;
 import com.example.mailson.tcc.classes.Dados;
 import com.example.mailson.tcc.classes.Notificacao;
 import com.google.android.gms.vision.CameraSource;
@@ -142,8 +143,9 @@ public class LerPlacaActivity extends AppCompatActivity implements View.OnClickL
                                      new Thread(new Runnable()
                                      {
                                          public void run() {
-                                             if (Notificacao.EnviarNotificacao(placa, "")) {
+                                             if (ConnectionWS.EnviarNotificacao(placa, notificacao)) {
                                                  Intent intent = new Intent(getApplicationContext(), AcoesActivity.class);
+                                                 intent.putExtra("NotivicaoEnviada", true);
                                                  startActivity(intent);
                                              }
                                          }

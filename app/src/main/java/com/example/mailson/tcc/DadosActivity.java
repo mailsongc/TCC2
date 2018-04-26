@@ -1,5 +1,6 @@
 package com.example.mailson.tcc;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mailson.tcc.DTO.jsonVisionPost;
+import com.example.mailson.tcc.classes.ConnectionWS;
+import com.example.mailson.tcc.classes.Dados;
 
 import org.w3c.dom.Text;
+
+import dmax.dialog.SpotsDialog;
 
 public class DadosActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +26,7 @@ public class DadosActivity extends AppCompatActivity implements View.OnClickList
     TextView txtNome;
     TextView txtRenavam;
     EditText edtSenha;
+    jsonVisionPost obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +39,7 @@ public class DadosActivity extends AppCompatActivity implements View.OnClickList
         edtSenha = findViewById(R.id.edtSenha);
         
         Button btnConfirma = findViewById(R.id.btnConfirmar);
-        jsonVisionPost obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
+        obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
 
         txtPlaca.setText("Placa: "+obj.getPlaca());
         txtModelo.setText("Modelo: " +obj.getModela());
@@ -55,8 +61,25 @@ public class DadosActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 }
                 //salvar cadastro e manter logado
-                Intent intent = new Intent(this, AcoesActivity.class);
-                startActivity(intent);
+                AlertDialog dialog = new SpotsDialog(DadosActivity.this, R.style.CustomDialogCadastro);
+                dialog.show();
+                obj.setSenha(edtSenha.getText().toString());
+                new Thread(new Runnable()
+                {
+                    public void run() {
+                        if (obj.isSucesso()) {
+                            ConnectionWS.Cadastrar(obj);
+                            Intent intent = new Intent(getApplicationContext(), AcoesActivity.class);
+                            startActivity(intent);
+                        }
+                        else{//não fez cadastro
+
+
+                        }
+                    }
+                }).start();
+
+
                 break;
         }
     }

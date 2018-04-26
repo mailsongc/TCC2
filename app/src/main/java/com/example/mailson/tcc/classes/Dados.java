@@ -47,10 +47,6 @@ private static String EnviarImagemApi(Bitmap imagem){
         Response response = client.newCall(request).execute();
         String resStr = response.body().string().toString();
 
-
-        JSONObject jsonReturn = new JSONObject(resStr);
-
-
         return  resStr;
     } catch (Exception e) {
         Log.e("Your tag", "Error", e);
@@ -136,7 +132,10 @@ private static String EnviarImagemApi(Bitmap imagem){
         //modelo
         int Inicio = json.indexOf("MOD.");
         int Fim = json.lastIndexOf("CAP");
-        obj.setModela(json.substring(Inicio,Fim));
+        if(Inicio > 0 && Fim > 0){
+            obj.setModela(json.substring(Inicio,Fim));
+        }
+
 
         //placa
         pattern = Pattern.compile("[a-zA-Z]{3}\\-\\d{4}");

@@ -1,5 +1,8 @@
 package com.example.mailson.tcc.classes;
 
+import com.example.mailson.tcc.DTO.jsonVisionPost;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,11 +23,31 @@ import okhttp3.Response;
 public class ConnectionWS {
 
 
-    public  static boolean Cadastrar(){
+    public  static boolean Cadastrar(jsonVisionPost json){
+        try {
+            String urlPost
+                    = "http://www.henrique-silveira.com/WebServiceAlertCar/ws/cadastra.php?nome=" +
+                    json.getNome() + "&cpf=" + json.getCpfDoc() + "&renavam=" + json.getRenavam() + "&placa=" + json.getPlaca() + "&marcamodelo=" + json.getModela() + "&local=Curitiba&pwd=" + json.getSenha() + "&status=0&idcelular=" + json.getIdCelular();
+            URL url = null;
+            json.setIdCelular(FirebaseInstanceId.getInstance().getToken());
+
+            url = new URL(urlPost);
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder().url(url).build();
+            Response response = client.newCall(request).execute();
+
+            String resStr = response.body().string().toString();
+          //  JSONObject jsonobj = new JSONObject(resStr);
+
+           // jsonobj.getBoolean("valido");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return true;
     }
-
 
         public static  boolean Login(String placa, String senha) throws ProtocolException {
 
@@ -51,5 +74,27 @@ public class ConnectionWS {
         }
 
             return  false;
+        }
+
+        public  static boolean EnviarNotificacao(String Placa, String Notificacao){
+            try
+            {
+                String urlPost = "http://www.henrique-silveira.com/WebServiceAlertCar/ws/FCM.php?placa="+Placa  +"&msg="+Notificacao;
+                URL url = new URL(urlPost);
+
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url(url).build();
+                Response response = client.newCall(request).execute();
+
+                String resStr = response.body().string().toString();
+
+
+            }
+            catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return true;
         }
 }

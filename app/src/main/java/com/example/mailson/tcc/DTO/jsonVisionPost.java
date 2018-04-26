@@ -13,6 +13,7 @@ public class jsonVisionPost  implements Serializable {
     private String Modela;
     private String Senha;
     private boolean sucesso;
+    private String IdCelular;
 
     public jsonVisionPost() {
     }
@@ -79,6 +80,14 @@ public class jsonVisionPost  implements Serializable {
 
     public void setSenha(String senha) {
         Senha = senha;
+    }
+
+    public String getIdCelular() {
+        return IdCelular;
+    }
+
+    public void setIdCelular(String idCelular) {
+        IdCelular = idCelular;
     }
 
 

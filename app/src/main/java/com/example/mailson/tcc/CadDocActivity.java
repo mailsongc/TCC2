@@ -27,7 +27,7 @@ public class CadDocActivity extends AppCompatActivity {
 
        private ImageView imageView;
     private Bitmap imagemDoc;
-
+    jsonVisionPost obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class CadDocActivity extends AppCompatActivity {
         Button btnTirarFoto = (Button)findViewById(R.id.btnTirarFotoDoc);
         imageView = (ImageView)findViewById(R.id.imgDocFoto);
 
-        jsonVisionPost obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
+        obj = (jsonVisionPost) getIntent().getSerializableExtra("Objeto");
 
 
         btnTirarFoto.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +60,7 @@ public class CadDocActivity extends AppCompatActivity {
                     new Thread(new Runnable()
                     {
                         public void run() {
-                            jsonVisionPost obj = Dados.EnviarCNH(imagemDoc);
+                            obj = Dados.EnviarDocumento(imagemDoc, obj);
                             if (obj.isSucesso()) {
                                 Intent intent = new Intent(getApplicationContext(), DadosActivity.class);
                                 intent.putExtra("Objeto", obj);
